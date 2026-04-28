@@ -1,4 +1,4 @@
-#N canvas 884 30 594 842 12;
+#N canvas 884 30 937 842 12;
 #X obj 156 291 *~;
 #X obj 488 323 *~;
 #X obj 196 265 vline~;
@@ -24,7 +24,7 @@
 #X text 208 604 creation arguments are OSC address;
 #X text 210 565 set message to change OSC address;
 #X floatatom 74 521 5 0 0 0 - - - 0;
-#N canvas 817 30 623 462 oscReceive 1;
+#N canvas 1651 638 623 462 oscReceive 1;
 #X obj 55 184 netreceive -u -b;
 #X msg 78 143 listen 0;
 #X text 152 143 stop listening;
@@ -56,7 +56,7 @@
 #X restore 78 469 pd oscReceive;
 #X obj 75 605 oscformat PD message;
 #X msg 107 566 set PD message;
-#N canvas 727 97 450 300 oscSend 1;
+#N canvas 1137 992 450 271 oscSend 1;
 #X msg 158 207 disconnect;
 #X obj 61 253 netsend -u -b;
 #X obj 59 55 list prepend send;
