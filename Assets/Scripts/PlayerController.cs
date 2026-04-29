@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (value.isPressed && Mathf.Abs(rb.linearVelocity.y) < 0.01f)
+        if (value.isPressed)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
@@ -87,5 +87,12 @@ public class PlayerController : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/landing", 1);
+        OSCHandler.Instance.UpdateLogs();
+
     }
 }
