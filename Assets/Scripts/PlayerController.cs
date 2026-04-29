@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
         OSCHandler.Instance.Init();
         Cursor.lockState = CursorLockMode.Locked;
+        startMusic();
     }
 
     void FixedUpdate()
@@ -52,6 +53,12 @@ public class PlayerController : MonoBehaviour
         OSCHandler.Instance.UpdateLogs();
     }
 
+    void startMusic()
+    {
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/playsong", 1);
+        OSCHandler.Instance.UpdateLogs();
+    }
+
     void OnMove(InputValue value)
     {
         Vector2 movement = value.Get<Vector2>();
@@ -65,6 +72,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/jumping", 1);
+        OSCHandler.Instance.UpdateLogs();
     }
 
     void OnLook(InputValue value)
